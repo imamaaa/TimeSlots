@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timetable</title>
+    <!-- Include your custom CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='timetable.css') }}">
+</head>
+<body>
+    <!-- Your content goes here -->
+    <div class="timetable">
+        <table>
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for time_slot in time_slots %}
+                    <tr>
+                        <td>{{ time_slot.start_time }} - {{ time_slot.end_time }}</td>
+                        {% for weekday in weekdays %}
+                            <td {% if time_slot.weekday == weekday %}class="current-day"{% endif %}>
+                                {% if time_slot.weekday == weekday %}
+                                    {{ time_slot.course }} | {{ time_slot.resource }}
+                                {% endif %}
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+            
+        </table>
+    </div>
+</body>
+</html>

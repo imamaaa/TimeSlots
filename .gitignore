@@ -1,0 +1,3 @@
+# .gitattributes
+*text=auto
+Lib/site-packages/pip/_vendor/

@@ -1,0 +1,36 @@
+/* Reset some default styles */
+body, h1, h2, p, table {
+    margin: 0;
+    padding: 0;
+}
+
+/* Apply a background color and some spacing to the timetable */
+.timetable {
+    margin: 20px;
+}
+
+/* Style the table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Style table headers */
+th {
+    background-color: #f2f2f2;
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+/* Style table cells */
+td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+/* Highlight the current day */
+.current-day {
+    background-color: #dff0d8; /* Example color, you can customize */
+}
+
