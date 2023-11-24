@@ -13,21 +13,22 @@
         <table>
             <thead>
                 <tr>
-                    <th>Time</th>
-                    <th>Monday</th>
-                    <th>Tuesday</th>
-                    <th>Wednesday</th>
-                    <th>Thursday</th>
-                    <th>Friday</th>
+                    <th></th> <!-- Empty cell in the top-left corner -->
+                    {% for time_slot in time_slots %}
+                        <th {% if time_slot.weekday == 'Monday' %}class="current-day"{% endif %}
+                            style="width: 150px;"> <!-- Adjust the width as needed -->
+                            {{ time_slot.start_time }} - {{ time_slot.end_time }}
+                        </th>
+                    {% endfor %}
                 </tr>
             </thead>
             <tbody>
-                {% for time_slot in time_slots %}
+                {% for resource in resources %}
                     <tr>
-                        <td>{{ time_slot.start_time }} - {{ time_slot.end_time }}</td>
-                        {% for weekday in weekdays %}
-                            <td {% if time_slot.weekday == weekday %}class="current-day"{% endif %}>
-                                {% if time_slot.weekday == weekday %}
+                        <td>{{ resource }}</td> <!-- Display room numbers vertically -->
+                        {% for time_slot in time_slots %}
+                            <td {% if time_slot.resource == resource and time_slot.weekday == weekdays[0] %}class="current-day"{% endif %}>
+                                {% if time_slot.resource == resource and time_slot.weekday == weekdays[0] %}
                                     {{ time_slot.course }} | {{ time_slot.resource }}
                                 {% endif %}
                             </td>
@@ -35,6 +36,19 @@
                     </tr>
                 {% endfor %}
             </tbody>
+            <!-- Additional table for class names or room numbers -->
+            <tbody>
+                <tr>
+                    <td>Class Names</td>
+                </tr>
+                {% for class_name in ["c-301", "c-302", "c-303", "c-304", "c-305", "c-306", "c-307", "c-308", "c-309", "c-310",
+                                       "c-401", "c-402", "c-403", "c-404", "c-405", "c-406", "c-407", "c-408", "c-409", "c-410"] %}
+                    <tr>
+                        <td>{{ class_name }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+
             
         </table>
     </div>
